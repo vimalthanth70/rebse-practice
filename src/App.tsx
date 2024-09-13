@@ -31,17 +31,11 @@ function reducer(state: State, action: Action) {
 }
 
 function App() {
-  const [state, dispatch] = useReducer<any>(reducer, { count: 0 });
-
-  const [searchTxt, setSearchTxt] = useState("");
-
   const { data, error, loading } = useFecthData(
     "https://jsonplaceholder.typicode.com/todos",
     "GET"
   );
   console.log(data, error, loading, "data19");
-
-  console.log("hello there");
 
   async function fetchData(query: string) {
     try {
@@ -49,7 +43,9 @@ function App() {
         "https://jsonplaceholder.typicode.com/todos/" + query
       );
       console.log(response);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const handleChange = (value: string) => {
